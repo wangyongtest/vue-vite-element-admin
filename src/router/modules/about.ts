@@ -4,7 +4,11 @@ export const aboutRoutes = [
     path: '/about',
     name: 'About',
     redirect: '/about/index',
-    meta: { title: '关于', icon: 'House' },
+    meta: {
+      title: '关于',
+      icon: 'House',
+      roles: ['other']
+    },
     component: Layout,
     children: [
       {
@@ -14,7 +18,6 @@ export const aboutRoutes = [
         meta: {
           title: '关于',
           icon: 'House',
-          affix: true,
           role: ['other']
         }
       },
@@ -25,7 +28,7 @@ export const aboutRoutes = [
         meta: {
           title: '相关详情',
           icon: 'House',
-          affix: true,
+          // affix: true, // 配置路由注意添加后无法关闭当前页
           role: ['other']
         }
       }

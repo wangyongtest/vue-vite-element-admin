@@ -55,6 +55,8 @@ export const useTagsViewStore = defineStore('tagsViewState', {
       })
     },
     toLastView (activeTabPath:string) {
+      console.log(activeTabPath, 'activeTabPath')
+
       const index = this.visitedViews.findIndex((item) => item.path === activeTabPath)
       const nextTab = this.visitedViews[index + 1] || this.visitedViews[index - 1]
       if (!nextTab) return
@@ -90,6 +92,8 @@ export const useTagsViewStore = defineStore('tagsViewState', {
       })
     },
     delOtherViews (path) {
+      console.log(path, 'delOtherViews')
+
       this.visitedViews = this.visitedViews.filter((item) => {
         return item.path === path || item.meta.affix
       })
@@ -98,8 +102,8 @@ export const useTagsViewStore = defineStore('tagsViewState', {
       })
     },
     goHome () {
-      this.activeTabsValue = '/home'
-      router.push({ path: '/home' })
+      this.activeTabsValue = '/index'
+      router.push({ path: '/index' })
     },
     updateVisitedView (view) {
       for (let v of this.visitedViews) {

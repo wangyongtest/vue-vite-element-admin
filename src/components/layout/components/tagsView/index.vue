@@ -76,7 +76,7 @@ onMounted(() => {
 watch(route, () => {
   addTags()
 })
-// const tabIndex = 2
+
 const activeTabsValue = computed({
   get: () => {
     return TagsViewStore.activeTabsValue
@@ -85,7 +85,7 @@ const activeTabsValue = computed({
     TagsViewStore.setTabsMenuValue(val)
   }
 })
-function toLastView (activeTabPath) {
+function toLastView (activeTabPath:string) {
   const index = visitedViews.value.findIndex(item => item.path === activeTabPath)
   const nextTab = visitedViews.value[index + 1] || visitedViews.value[index - 1]
   if (!nextTab) return
@@ -97,7 +97,7 @@ const tabClick = (tabItem: TabsPaneContext) => {
   router.push(path)
 }
 
-const isActive = (path) => {
+const isActive = (path:string) => {
   return path === route.path
 }
 const removeTab = async (activeTabPath: string) => {

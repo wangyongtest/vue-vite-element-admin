@@ -36,7 +36,7 @@
   </el-dropdown>
 </template>
 <script lang="ts" setup>
-// import { computed } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { userSettingStore } from '~store/settings'
 import { useTagsViewStore } from '~store/tagsView'
@@ -45,12 +45,16 @@ import { useTagsViewStore } from '~store/tagsView'
 const route = useRoute()
 const SettingStore = userSettingStore()
 const TagsViewStore = useTagsViewStore()
-// const visitedViews = computed(() => TagsViewStore.visitedViews)
+const visitedViews = computed(() => TagsViewStore.visitedViews)
+console.log(visitedViews, 'visitedViews')
+
 const refresh = () => {
   SettingStore.setReload()
 }
 // 关闭当前
 const closeCurrentTab = (event) => {
+  console.log(route, 'route')
+
   TagsViewStore.toLastView(route.path)
   TagsViewStore.delView(route.path)
 }
