@@ -198,16 +198,17 @@ const changeGrayWeak = (type, val) => {
 
   <style lang="scss" scoped>
   ::v-deep(.el-drawer__header){
-    border-bottom: 1px solid #ebeef5;
     padding: 15px 20px 14px;
     margin-bottom: 0;
+    border-bottom: 1px solid #ebeef5;
   }
+
     .m-setting-fix {
       position: fixed;
       top: 50%;
       right: 0;
       z-index: 999;
-      padding: 10px 0 0 0;
+      padding: 10px 0 0;
       margin: 0;
       text-align: center;
       cursor: pointer;
@@ -217,33 +218,35 @@ const changeGrayWeak = (type, val) => {
       border-bottom-left-radius: 5.5px;
       box-shadow: 0 0 50px 0 rgb(82 63 105 / 15%);
       transform: translateY(-50%);
+
       .item {
         display: flex;
         flex-direction: column;
         align-items: center;
-
         justify-content: center;
         padding: 0 8px 10px 10px;
         margin: 0;
         list-style: none;
       }
+
       .item-child {
-        color: #3698fd;
-        width: 60px;
-        height: 60px;
-        /*padding-top: 10px;*/
-        text-align: center;
         display: flex;
         flex-direction: column;
-        background: #f6f8f9;
         align-items: center;
         justify-content: center;
-        border-radius: 5.5px;
+        width: 60px;
+        height: 60px;
         font-size: 12px;
+        color: #3698fd;
+
+        /* padding-top: 10px; */
+        text-align: center;
         background: #ebf5ff;
+        border-radius: 5.5px;
         transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease,
           box-shadow 0.15s ease;
       }
+
       .item-child2 {
         margin-top: 10px;
         color: #b37feb;
@@ -257,14 +260,15 @@ const changeGrayWeak = (type, val) => {
       font-weight: bold;
       color: black;
     }
+
     .theme-item {
-      width: 100%;
       display: flex;
-      margin-bottom: 15px;
       align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 15px;
       font-size: 14px;
       color: black;
-      justify-content: space-between;
 
     }
   </style>

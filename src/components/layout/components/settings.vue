@@ -30,19 +30,23 @@ const changeSwitch = (key, val) => {
       justify-content: center;
       cursor: pointer;
       transition: all 0.3s;
+
       .item-info-pop {
         display: flex;
         align-items: center;
       }
+
       .bell {
         color: black;
       }
+
       .item-child {
         display: flex;
         align-items: center;
         font-size: 13px;
       }
     }
+
     .transverseMenu {
       .bell {
         color: white;

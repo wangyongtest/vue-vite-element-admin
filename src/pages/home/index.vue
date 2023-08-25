@@ -55,11 +55,11 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .homePage{
+  box-sizing: border-box;
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
   padding: 16px;
-  box-sizing: border-box;
   font-size: 14px;
 }
 </style>

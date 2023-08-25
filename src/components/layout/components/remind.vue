@@ -83,23 +83,28 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s;
+
     .item-info-pop {
       display: flex;
       align-items: center;
     }
+
     .bell{
       color: black;
     }
+
     .item-child {
       display: flex;
       align-items: center;
       font-size: 13px;
     }
   }
+
   ::v-deep(.el-divider--horizontal){
-    margin-bottom: 10px;
     margin-top: 10px;
+    margin-bottom: 10px;
   }
+
   .transverseMenu {
     .bell {
       color: white;

@@ -28,12 +28,15 @@ const globalComSize = computed(():string => SettingStore.themeConfig.globalComSi
       -moz-osx-font-smoothing: grayscale;
       color: #2c3e50;
     }
+
     .el-pager li:focus {
       border: none;
     }
+
     .el-dropdown:focus {
       border: none;
     }
+
     .svg-icon:focus {
       border: none;
     }

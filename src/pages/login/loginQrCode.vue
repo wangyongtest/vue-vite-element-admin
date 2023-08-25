@@ -10,6 +10,3 @@
 <script lang="ts" setup>
 import vueQr from 'vue-qr/src/packages/vue-qr.vue'
 </script>
-
-  <style lang="scss" scoped>
-  </style>

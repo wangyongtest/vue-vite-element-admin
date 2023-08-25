@@ -58,30 +58,34 @@ const classObj = computed(() => {
 
 <style lang="scss" scoped>
   .g-container-layout {
-    height: 100%;
     width: 100%;
+    height: 100%;
+
     .main-container {
+      box-sizing: border-box;
       display: flex;
       flex: 1;
-      box-sizing: border-box;
       flex-direction: column;
     }
+
     &.mobile.openSidebar {
       position: fixed;
       top: 0;
     }
   }
+
   .sidebar-container {
     display: flex;
     flex-direction: column;
   }
+
   .drawer-bg {
+    position: absolute;
+    top: 0;
+    z-index: 90;
+    width: 100%;
+    height: 100%;
     background: #000;
     opacity: 0.3;
-    width: 100%;
-    top: 0;
-    height: 100%;
-    position: absolute;
-    z-index: 90;
   }
 </style>

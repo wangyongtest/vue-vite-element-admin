@@ -117,41 +117,49 @@ const querySearch = (query) => {
       justify-content: center;
       cursor: pointer;
       transition: all 0.3s;
+
       .item-info-pop {
         display: flex;
         align-items: center;
       }
+
       .bell {
         color: black;
       }
+
       .item-child {
         display: flex;
         align-items: center;
         font-size: 13px;
       }
-    }
-    .transverseMenu {
-      .bell {
-        color: white;
-      }
-    }
-    .header-search-select {
-    }
-    /* 菜单搜索样式 */
-    .m-headerSearch {
+
+      // 菜单搜索样式
       :deep(.el-dialog) {
         .el-dialog__header {
           display: none;
         }
+
         .el-dialog__body {
           padding: 0;
         }
       }
+
       .header-search-select {
         height: 50px;
+
         :deep(.el-input__wrapper) {
           height: 50px;
         }
       }
     }
+
+    .transverseMenu {
+      .bell {
+        color: white;
+      }
+    }
+
+    // .header-search-select {
+    // }
+
   </style>

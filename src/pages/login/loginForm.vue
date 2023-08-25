@@ -121,6 +121,3 @@ const submitForm = (formEl: FormInstance | undefined) => {
   })
 }
 </script>
-
-  <style lang="scss" scoped>
-  </style>

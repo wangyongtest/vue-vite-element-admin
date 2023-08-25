@@ -23,8 +23,8 @@ const { toggle, isFullscreen } = useFullscreen()
   .m-screenful {
     display: flex;
     align-items: center;
-    padding-right: 0;
     justify-content: center;
+    padding-right: 0;
     cursor: pointer;
     transition: all 0.3s;
   }

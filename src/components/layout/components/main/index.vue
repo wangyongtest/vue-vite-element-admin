@@ -33,17 +33,18 @@ const isReload = computed(() => SettingStore.isReload)
 
   <style lang="scss" scoped>
     .app-main {
-      flex: 1;
-      display: flex;
-      overflow-x: hidden;
-      width: 100%;
       box-sizing: border-box;
+      display: flex;
+      flex: 1;
+      width: 100%;
+      overflow-x: hidden;
+
       .app-main-inner{
-        flex: 1;
-        display: flex;
-        overflow-x: hidden;
-        width: 100%;
         box-sizing: border-box;
+        display: flex;
+        flex: 1;
+        width: 100%;
+        overflow-x: hidden;
       }
     }
   </style>

@@ -5,6 +5,7 @@ import eslintPlugin from 'vite-plugin-eslint'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // 生产gz文件
 import viteCompression from 'vite-plugin-compression'
+import stylelint from 'vite-plugin-stylelint'
 import path from 'path'
 
 function resolve (dir) {
@@ -73,6 +74,13 @@ export default defineConfig(({ mode }:ConfigEnv):UserConfig => {
         jsx(),
         eslintPlugin({
           cache: false
+        }),
+        stylelint({
+          fix: true,
+          cache: false,
+          include: ['src/**/*.{css,scss,sass,less,vue}'],
+          lintOnStart: true,
+          emitWarningAsError: true
         }),
         createSvgIconsPlugin({
           // 指定需要缓存的图标文件夹

@@ -37,150 +37,165 @@ const handleClick = () => {
 </script>
 <style lang="scss">
 $dark_gray: #889aa4;
+
+.login-qrcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .title{
+    margin: 0;
+    font-size: 30px;
+    color: #000;
+    white-space: nowrap;
+  }
+}
+
 .login-box {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   background: white;
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
   .login-left{
     width: 50%;
+
     img{
       width: 100%;
       max-width: 900px;
     }
   }
+
   .login-form{
-    max-width: 480px;
+    position: relative;
+    box-sizing: border-box;
     width: 50%;
+    max-width: 480px;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
-    box-sizing: border-box;
-    position: relative;
 
     .info-qrcode{
-      width: 150px;
-      height: 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
       position: absolute;
       top: -60px;
       right: 0;
       display: flex;
-      justify-content: center;
       align-items: center;
-      color: #1492ff;
+      justify-content: center;
+      width: 150px;
+      height: 40px;
       font-size: 16px;
+      color: #1492ff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+
       &::after{
-        content: "";
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        width: 10px;
-        height: 26px;
-        border-top: 13px solid #fff;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-bottom: 13px solid transparent;
         position: absolute;
         top: 40px;
         right: 16px;
+        box-sizing: border-box;
+        width: 10px;
+        height: 26px;
+        content: "";
+        border-top: 13px solid #fff;
+        border-right: 5px solid transparent;
+        border-bottom: 13px solid transparent;
+        border-left: 5px solid transparent;
       }
     }
   }
+
    .login-title{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 54px;
     margin-bottom: 30px;
     background-image: url('~assets/login/logo.png');
     background-size: 100% 100%;
-    height: 54px;
     border: 1px solid transparent;
+
     .title{
       margin: 0;
       font-size: 30px;
       white-space: nowrap;
     }
+
     .icon{
       width: 100px;
     }
   }
+
   ::v-deep(.el-input__inner){
     height: 40px;
   }
 }
+
 .login-btn{
-  margin-top: 20px;
-  width: 100%; height: 47px
+  width: 100%; height: 47px;
+  margin-top: 20px
 }
+
 .show-pwd {
   position: absolute;
-  right: 10px;
   top: 7px;
+  right: 10px;
   font-size: 16px;
   color: $dark_gray;
   cursor: pointer;
   user-select: none;
+
   ::v-deep(.svg-icon){
     vertical-align: 0;
   }
 }
+
 .login-container {
-  background-color: #f0f2f5;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f0f2f5;
 }
+
 .login-dark{
   position: absolute;
-  right: 20px;
   top: 20px;
+  right: 20px;
 }
 
 .qrcode{
   position: absolute;
-  right: 0;
   top: 0;
-  cursor: pointer;
+  right: 0;
   width: 30px;
-}
-.login-qrcode{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  img {
-
-  }
-  .title{
-    margin: 0;
-    font-size: 30px;
-    white-space: nowrap;
-    color: #000000;
-  }
+  cursor: pointer;
 }
 
-@media (max-width: 850px){
+@media (width <= 850px){
   .login-container{
     padding: 10px;
   }
+
   .login-box{
     .login-form{
       width: 88%;
+
       .title{
         font-size: 20px;
       }
     }
   }
+
   .login-left{
     display: none;
   }

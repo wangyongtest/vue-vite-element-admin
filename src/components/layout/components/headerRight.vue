@@ -23,6 +23,7 @@ import Avatar from './avatar.vue'
   .header-tool-right{
     display: flex;
     align-items: center;
+
     .item-children{
       margin-right: 22px;
     }

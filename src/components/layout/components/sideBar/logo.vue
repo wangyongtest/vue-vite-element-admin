@@ -40,22 +40,24 @@ defineProps<{ isCollapse: boolean }>()
     .sidebarLogoFadeCl-enter-active {
       transition: opacity 2s;
     }
+
     .sidebarLogoFadeCl-enter-from,
     .sidebarLogoFadeCl-leave-to {
       opacity: 0;
     }
+
     .sidebar-logo-container {
       position: relative;
       width: 100%;
       height: 50px;
-      line-height: 50px;
-      background: #2b2f3a;
-      text-align: center;
       overflow: hidden;
+      line-height: 50px;
+      text-align: center;
+      background: #2b2f3a;
 
       & .sidebar-logo-link {
-        height: 100%;
         width: 100%;
+        height: 100%;
 
         & .sidebar-logo {
           width: 32px;
@@ -63,14 +65,15 @@ defineProps<{ isCollapse: boolean }>()
           vertical-align: middle;
 
         }
+
         & .sidebar-title {
           display: inline-block;
           margin: 0;
-          color: #fff;
-          font-weight: 600;
           margin-left: 12px;
-          line-height: 50px;
           font-size: 14px;
+          font-weight: 600;
+          line-height: 50px;
+          color: #fff;
           vertical-align: middle;
         }
       }

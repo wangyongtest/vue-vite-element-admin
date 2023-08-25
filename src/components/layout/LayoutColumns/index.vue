@@ -126,47 +126,56 @@ const handleChangeMenu = (item) => {
   .main-columns {
     display: flex;
     flex-direction: row !important;
-    height: 100%;
     width: 100%;
+    height: 100%;
   }
+
   .layout-columns-aside {
     flex-shrink: 0;
     width: 80px;
     height: 100%;
     background-color: #304156;
+
     .el-scrollbar {
       height: calc(100% - 55px);
     }
+
     .logo {
       box-sizing: border-box;
       height: 50px;
+
       img {
         width: 32px;
         object-fit: contain;
       }
     }
+
     .menu-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       .item-menu-wrap {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 70px;
         width: 70px;
+        height: 70px;
         cursor: pointer;
         transition: all 0.3s ease;
       }
+
       .active-menu {
         background: $primaryColor;
         border-radius: 5px;
       }
+
       .title {
         color: #e5eaf3;
       }
+
       .el-icon {
         color: #e5eaf3;
       }
@@ -174,52 +183,59 @@ const handleChangeMenu = (item) => {
   }
 
   .layout-columns-sub {
-    flex-shrink: 0;
-    width: 200px;
     box-sizing: border-box;
     flex-direction: column;
+    flex-shrink: 0;
+    width: 200px;
     overflow: hidden;
-    transition: all 0.3s ease;
     background: white;
     border-right: 1px solid #eee;
+    transition: all 0.3s ease;
+
     .el-scrollbar {
       height: calc(100vh - 50px);
     }
+
     .logo {
-      width: 100%;
       box-sizing: border-box;
+      width: 100%;
       height: 50px;
       border-bottom: 1px solid #eee;
+
       span {
         font-weight: bold;
         white-space: nowrap;
       }
     }
+
     ::v-deep(.menu-columns) {
       border-right: none;
     }
   }
+
   .container {
-    flex: 1;
-    overflow: hidden;
     display: flex;
+    flex: 1;
     flex-direction: column;
+    overflow: hidden;
   }
+
   .layout-header {
-    background: white;
-    transition: width 0.28s;
-    flex-shrink: 0;
     box-sizing: border-box;
+    flex-shrink: 0;
+    background: white;
     box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+    transition: width 0.28s;
+
     .header-tool {
-      height: 50px;
-      width: 100%;
-      border-bottom: 1px solid #eee;
+      box-sizing: border-box;
       display: flex;
       align-items: center;
-      padding: 0 10px 0 0;
-      box-sizing: border-box;
       justify-content: space-between;
+      width: 100%;
+      height: 50px;
+      padding: 0 10px 0 0;
+      border-bottom: 1px solid #eee;
     }
   }
 </style>

@@ -110,37 +110,40 @@ const removeTab = async (activeTabPath: string) => {
   <style lang="scss" scoped>
   .header-tags-view{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-left: 10px;
+    justify-content: space-between;
     padding-right: 10px;
+    padding-left: 10px;
     background: white;
+
     .right-btn{
-      height: 100%;
       flex-shrink: 0;
+      height: 100%;
     }
   }
+
   .tags-view {
+    box-sizing: border-box;
     flex: 1;
     overflow: hidden;
-    box-sizing: border-box;
-  }
 
-  .tags-view{
-    .el-tabs--card :deep(.el-tabs__header){
+    .el-tabs--card :deep(.el-tabs__header) {
       box-sizing: border-box;
       height: 40px;
       padding: 0 10px;
       margin: 0;
     }
-    ::v-deep(.el-tabs){
+
+    ::v-deep(.el-tabs) {
       .el-tabs__nav {
         border: none;
       }
+
       .el-tabs__header .el-tabs__item {
+        color: #ccc;
         border: none;
-        color: #cccccc;
       }
+
       .el-tabs__header .el-tabs__item.is-active {
         color: $primaryColor;
         border-bottom:2px solid $primaryColor;
