@@ -108,7 +108,8 @@ const removeTab = async (activeTabPath: string) => {
 }
 </script>
   <style lang="scss" scoped>
-  @import '~styles/variables.scss';
+  @import '~styles/variables';
+
   .header-tags-view{
     display: flex;
     align-items: center;
