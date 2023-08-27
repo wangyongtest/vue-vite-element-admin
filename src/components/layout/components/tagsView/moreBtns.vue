@@ -52,9 +52,7 @@ const refresh = () => {
   SettingStore.setReload()
 }
 // 关闭当前
-const closeCurrentTab = (event) => {
-  console.log(route, 'route')
-
+const closeCurrentTab = () => {
   TagsViewStore.toLastView(route.path)
   TagsViewStore.delView(route.path)
 }
@@ -70,6 +68,7 @@ const closeAllTab = async () => {
 }
 </script>
   <style lang="scss" scoped>
+  @import '~styles/variables.scss';
   .more{
     color: white;
     background-color: $primaryColor;

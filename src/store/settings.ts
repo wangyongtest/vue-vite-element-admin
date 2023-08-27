@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export interface IThemeConfig {
+export type IThemeConfig = {
     // 显示设置
     showSetting?: boolean
     // 菜单展示模式 默认 vertical   horizontal / vertical /columns
@@ -32,8 +32,7 @@ interface ISideBar {
 }
 
 interface IThemeKey {
-  key: string
-  val: boolean
+ [key:string]: string | boolean
 }
 
 export const userSettingStore = defineStore('userSetting', {
@@ -104,10 +103,10 @@ export const userSettingStore = defineStore('userSetting', {
       }, 50)
     },
     setThemeConfig (payload:IThemeKey) {
-      console.log(payload)
-      const { key, val } = payload
-
-      this.themeConfig[key] = val
+      this.themeConfig = {
+        ...this.themeConfig,
+        ...payload
+      }
     },
     // 关闭侧边栏
     closeSideBar ({ withoutAnimation }:ISideBar) {

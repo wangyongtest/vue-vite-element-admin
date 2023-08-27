@@ -1,7 +1,18 @@
 import { defineStore } from 'pinia'
 
+interface IUserInfo {
+  username?: string
+  password?: string
+}
+
+interface IUserStore {
+  token: null | string,
+  userInfo: IUserInfo
+  roles?: Array<string>
+}
+
 export const useUserStore = defineStore('userStore', {
-  state: () => {
+  state: ():IUserStore => {
     return {
       // 登录token
       token: null,

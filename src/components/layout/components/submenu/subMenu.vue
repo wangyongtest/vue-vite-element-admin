@@ -14,7 +14,7 @@
         :index="subItem.path"
       >
         <template #title>
-          <el-icon>
+          <el-icon v-if="subItem?.meta?.icon">
             <component :is="subItem?.meta?.icon" />
           </el-icon>
           <span>{{ subItem?.meta?.title }}</span>
@@ -26,16 +26,18 @@
 </template>
 
 <script setup lang="ts">
+import { PropType } from 'vue'
 import MenuItem from './menuItem.vue'
+import { RouterList } from '~types/router'
 
 defineProps({
   menuList: {
-    type: Array,
+    type: Array as PropType<Record<string, any>>,
     default: () => []
   }
 })
 
-const hasOneChild = (children = [], parent) => {
+const hasOneChild = (children:RouterList = [], parent:RouterList = []):any => {
   const showingChildren = children.filter((item) => {
     // 过滤掉需要隐藏的菜单
     if (item.hidden) {

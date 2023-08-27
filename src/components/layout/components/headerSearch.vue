@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch, Ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Fuse from 'fuse.js'
 
@@ -51,10 +51,10 @@ import { generateRoutes } from '~utils/router'
 import { usePermissionStore } from '~store/permission'
 const router = useRouter()
 const isShowSearch = ref(false)
-const options = ref([])
-const searchPool = ref([])
+const options:Ref<Array<any>> = ref([])
+const searchPool:Ref<any> = ref([])
 const search = ref('')
-const fuse = ref(null)
+const fuse:Ref<any> = ref([])
 const PermissionStore = usePermissionStore()
 const routes = computed(() => PermissionStore.routes)
 
@@ -62,13 +62,13 @@ const handleSearch = () => {
   isShowSearch.value = true
 }
 
-const initFuse = (list) => {
+const initFuse = (list:any[]) => {
   fuse.value = new Fuse(list, {
     shouldSort: true,
     threshold: 0.4,
     location: 0,
     distance: 100,
-    maxPatternLength: 32,
+    // maxPatternLength: 32, 根据Fuse源码 无此字段
     minMatchCharLength: 1,
     keys: [
       {
@@ -87,7 +87,7 @@ watch(searchPool, (list) => {
   initFuse(list)
 })
 
-const change = (val) => {
+const change = (val:string) => {
   if (val) {
     router.push({
       path: val
@@ -101,8 +101,10 @@ onMounted(() => {
   searchPool.value = generateRoutes(JSON.parse(JSON.stringify(routes.value)))
 })
 
-const querySearch = (query) => {
+const querySearch = (query:string) => {
   if (query !== '') {
+    console.log(fuse, 'fuse')
+
     options.value = fuse.value.search(query)
   } else {
     options.value = []

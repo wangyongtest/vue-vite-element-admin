@@ -1,15 +1,14 @@
 import Layout from '~comp/layout/index.vue'
-import { RouteRecordRaw } from 'vue-router'
 
-import { extendRoute } from '~types/router'
+import { RouterList } from '~types/router'
 import { aboutRoutes } from './about'
 
 // 异步组件
-export const asyncRoutes:Array<RouteRecordRaw & extendRoute> = [
+export const asyncRoutes:RouterList = [
   ...aboutRoutes
 ]
 
-export const routeList:Array<RouteRecordRaw & extendRoute> = [
+export const routeList:RouterList = [
   {
     path: '/',
     name: 'layout',
@@ -31,15 +30,15 @@ export const routeList:Array<RouteRecordRaw & extendRoute> = [
     ]
   },
   {
-    path: '/404',
-    name: '404',
-    component: () => import('~pages/errorPages/404.vue'),
-    hidden: true
-  },
-  {
     path: '/403',
     name: '403',
     component: () => import('~pages/errorPages/403.vue'),
+    hidden: true
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import('../../pages/notFound/index.vue'),
     hidden: true
   },
   {

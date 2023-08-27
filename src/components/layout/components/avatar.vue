@@ -65,7 +65,7 @@ const PermissionStore = usePermissionStore()
 
 const currentRoles = computed({
   get () {
-    return UserStore.roles[0]
+    return UserStore.roles?.[0]
   },
   set (val) {
     ;(async () => {

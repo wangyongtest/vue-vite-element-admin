@@ -18,7 +18,7 @@
 <script lang="ts" setup>
 import { userSettingStore } from '~store/settings'
 const SettingStore = userSettingStore()
-const changeSwitch = (key, val) => {
+const changeSwitch = (key:string, val:boolean) => {
   SettingStore.setThemeConfig({ key, val })
 }
 </script>

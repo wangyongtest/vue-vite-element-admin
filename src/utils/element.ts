@@ -1,8 +1,11 @@
 import { ElLoading } from 'element-plus'
 
-let loading = null
-
-export const openLoading = (options = {}) => {
+interface IELoading {
+  text?: string
+  close?:()=> void
+}
+let loading: any
+export const openLoading = (options:IELoading = {}) => {
   const text = options.text || '加载中'
   loading = ElLoading.service({
     lock: true,

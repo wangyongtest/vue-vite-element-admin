@@ -168,7 +168,7 @@ export function verifyEmail (val:string) {
    * @param message 提示
    */
 export function validatorMethod (verifyPhone:(str:string)=>boolean, message:string) {
-  return (rule, value, callback) => {
+  return (rule:Array<any>, value:string, callback:Function) => {
     if (!verifyPhone(value)) {
       callback(new Error(message))
     } else {

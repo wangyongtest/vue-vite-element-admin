@@ -1,5 +1,6 @@
-@import './common';  // 公共样式
+@import './variables.scss';
 @import './mixin';  // scss 函数
 @import './animation';  // 动画
 @import './sidebar';
 @import "./element";
+@import './common';  // 公共样式

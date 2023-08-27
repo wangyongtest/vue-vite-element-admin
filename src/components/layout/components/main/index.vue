@@ -11,7 +11,7 @@
           v-if="isReload"
         >
           <component
-            :is="useWrapComponents(Component,route)"
+            :is="useWrapComponents(Component, route)"
             :key="route.path"
           />
         </keep-alive>

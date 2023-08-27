@@ -28,7 +28,7 @@ defineProps({
   }
 })
 
-const handleClickMenu = (subItem) => {
+const handleClickMenu = (subItem:any) => {
   if (isExternal(subItem.path)) return window.open(subItem.path, '_blank')
   router.push(subItem.path)
 }

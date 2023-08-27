@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 import router from '../router/index'
-import { RouteRecord } from 'vue-router'
+import { IRouterItem, RouterList } from '~types/router'
 export interface IVisiteViews {
   activeTabsValue: string
-  visitedViews: RouteRecord[]
-  cachedViews: RouteRecord[]
+  visitedViews: RouterList
+  cachedViews: RouterList
 }
 
 export const useTagsViewStore = defineStore('tagsViewState', {
@@ -21,26 +21,26 @@ export const useTagsViewStore = defineStore('tagsViewState', {
     setTabsMenuValue (val:string) {
       this.activeTabsValue = val
     },
-    addView (view:RouteRecord) {
+    addView (view:IRouterItem) {
       this.addVisitedView(view)
     },
-    removeView (routes:RouteRecord[]) {
+    removeView (routes:any) {
       return new Promise((resolve, reject) => {
         this.visitedViews = this.visitedViews.filter((item) => !routes.includes(item.path))
         resolve(null)
       })
     },
-    addVisitedView (view:RouteRecord) {
+    addVisitedView (view:any) {
       this.setTabsMenuValue(view.path)
 
       if (this.visitedViews.some((v) => v.path === view.path)) return
 
       this.visitedViews.push(
         Object.assign({}, view, {
-          title: view.meta.title || 'no-name'
+          title: view.meta?.title || 'no-name'
         })
       )
-      if (view.meta.keepAlive) {
+      if (view.meta?.keepAlive) {
         this.cachedViews.push(view.name)
       }
     },
@@ -58,7 +58,7 @@ export const useTagsViewStore = defineStore('tagsViewState', {
       console.log(activeTabPath, 'activeTabPath')
 
       const index = this.visitedViews.findIndex((item) => item.path === activeTabPath)
-      const nextTab = this.visitedViews[index + 1] || this.visitedViews[index - 1]
+      const nextTab:any = this.visitedViews[index + 1] || this.visitedViews[index - 1]
       if (!nextTab) return
       router.push(nextTab.path)
       this.addVisitedView(nextTab)
@@ -66,15 +66,15 @@ export const useTagsViewStore = defineStore('tagsViewState', {
     delVisitedView (path:string) {
       return new Promise((resolve) => {
         this.visitedViews = this.visitedViews.filter((v) => {
-          return v.path !== path || v.meta.affix
+          return v.path !== path || v.meta!.affix
         })
         this.cachedViews = this.cachedViews.filter((v) => {
-          return v.path !== path || v.meta.affix
+          return v.path !== path || v.meta!.affix
         })
         resolve([...this.visitedViews])
       })
     },
-    delCachedView (view) {
+    delCachedView (view:any) {
       return new Promise((resolve) => {
         const index = this.cachedViews.indexOf(view.name)
         index > -1 && this.cachedViews.splice(index, 1)
@@ -86,26 +86,26 @@ export const useTagsViewStore = defineStore('tagsViewState', {
     },
     delAllViews () {
       return new Promise((resolve) => {
-        this.visitedViews = this.visitedViews.filter((v) => v.meta.affix)
-        this.cachedViews = this.visitedViews.filter((v) => v.meta.affix)
+        this.visitedViews = this.visitedViews.filter((v) => v.meta!.affix)
+        this.cachedViews = this.visitedViews.filter((v) => v.meta!.affix)
         resolve([...this.visitedViews])
       })
     },
-    delOtherViews (path) {
+    delOtherViews (path:string) {
       console.log(path, 'delOtherViews')
 
       this.visitedViews = this.visitedViews.filter((item) => {
-        return item.path === path || item.meta.affix
+        return item.path === path || item.meta!.affix
       })
       this.cachedViews = this.visitedViews.filter((item) => {
-        return item.path === path || item.meta.affix
+        return item.path === path || item.meta!.affix
       })
     },
     goHome () {
       this.activeTabsValue = '/index'
       router.push({ path: '/index' })
     },
-    updateVisitedView (view) {
+    updateVisitedView (view:IRouterItem) {
       for (let v of this.visitedViews) {
         if (v.path === view.path) {
           v = Object.assign(v, view)

@@ -68,7 +68,7 @@ import { ref } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 
 const activeName = ref('first')
-const toGitHub = (link) => {
+const toGitHub = (link:string) => {
   window.open(link)
 }
 const handleClick = (tab: TabsPaneContext, event: Event) => {

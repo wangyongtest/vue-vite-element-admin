@@ -42,7 +42,7 @@
           v-model="layout"
           placeholder="请选择"
           style="width: 150px"
-          @change="(val) => changeSwitch('mode',val)"
+          @change="(val:boolean) => changeSwitch('mode',val)"
         >
           <el-option
             label="纵向"
@@ -70,42 +70,42 @@
         <label>灰色模式</label>
         <el-switch
           v-model="gray"
-          @change="(val) => changeGrayWeak('gray',val)"
+          @change="(val:string) => changeGrayWeak('gray',val)"
         />
       </div>
       <div class="theme-item">
         <label>色弱模式</label>
         <el-switch
           v-model="weak"
-          @change="(val) => changeGrayWeak('weak',val)"
+          @change="(val:string) => changeGrayWeak('weak',val)"
         />
       </div>
       <div class="theme-item">
         <label>标签栏</label>
         <el-switch
           v-model="showTag"
-          @change="(val) => changeSwitch('showTag',val)"
+          @change="(val:boolean) => changeSwitch('showTag',val)"
         />
       </div>
       <div class="theme-item">
         <label>侧边栏 Logo</label>
         <el-switch
           v-model="showLogo"
-          @change="(val) => changeSwitch('showLogo',val)"
+          @change="(val:boolean) => changeSwitch('showLogo',val)"
         />
       </div>
       <div class="theme-item">
         <label>保持一个子菜单的展开</label>
         <el-switch
           v-model="uniqueOpened"
-          @change="(val) => changeSwitch('uniqueOpened',val)"
+          @change="(val:boolean) => changeSwitch('uniqueOpened',val)"
         />
       </div>
       <div class="theme-item">
         <label>固定header</label>
         <el-switch
           v-model="fixedHeader"
-          @change="(val) => changeSwitch('fixedHeader',val)"
+          @change="(val:boolean) => changeSwitch('fixedHeader',val)"
         />
       </div>
     </el-drawer>
@@ -155,8 +155,8 @@ const predefineColor = [
 // }
 
 // 进行配置
-const changeSwitch = (key, val) => {
-  SettingStore.setThemeConfig({ key, val })
+const changeSwitch = (key:string, val:boolean|string) => {
+  SettingStore.setThemeConfig({ key: val })
   if (key === 'mode') {
     openLoading()
     setTimeout(() => {
@@ -176,7 +176,7 @@ watch(
 )
 
 // 修改主题颜色
-const changePrimary = (val) => {
+const changePrimary = (val:string) => {
   if (!val) {
     primary.value = val = SettingStore.themeConfig.primary
     ElMessage({ type: 'success', message: `主题颜色已重置为 ${SettingStore.themeConfig.primary}` })
@@ -186,7 +186,7 @@ const changePrimary = (val) => {
 }
 
 // 修改灰色模式
-const changeGrayWeak = (type, val) => {
+const changeGrayWeak = (type:string, val:string) => {
   const body = document.documentElement as HTMLElement
   if (!val) return body.setAttribute('style', '')
   if (type === 'gray') body.setAttribute('style', 'filter: grayscale(1)')

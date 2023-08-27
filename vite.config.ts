@@ -88,7 +88,6 @@ export default defineConfig(({ mode }:ConfigEnv):UserConfig => {
           // 指定symbolId格式
           symbolId: 'icon-[name]'
         })
-
       ],
       css: {
         preprocessorOptions: {
@@ -100,6 +99,8 @@ export default defineConfig(({ mode }:ConfigEnv):UserConfig => {
         devSourcemap: true
       },
       server: {
+        cors: true, // 默认启用并允许任何源
+        // open: true, // 在服务器启动时自动在浏览器中打开应用程序
         proxy: {
           '/api': {
             target: '',
@@ -115,48 +116,148 @@ export default defineConfig(({ mode }:ConfigEnv):UserConfig => {
     return {
       mode,
       resolve: {
-        alias: {
-          '~/': path.resolve(__dirname, 'src'),
-          '~comp': path.resolve(__dirname, 'src/component')
-        },
+        alias: [
+          {
+            find: '~/',
+            replacement: path.resolve(__dirname, 'src/')
+          },
+          {
+            find: '~comp',
+            replacement: path.resolve(__dirname, 'src/components/')
+          },
+          {
+            find: '~hooks',
+            replacement: path.resolve(__dirname, 'src/hooks/')
+          },
+          {
+            find: '~utils',
+            replacement: path.resolve(__dirname, 'src/utils/')
+          },
+          {
+            find: '~styles',
+            replacement: path.resolve(__dirname, 'src/styles/')
+          },
+          {
+            find: '~store',
+            replacement: path.resolve(__dirname, 'src/store/')
+          },
+          {
+            find: '~api',
+            replacement: path.resolve(__dirname, 'src/api/')
+          },
+          {
+            find: '~pages',
+            replacement: path.resolve(__dirname, 'src/pages/')
+          },
+          {
+            find: '~assets',
+            replacement: path.resolve(__dirname, 'src/assets/')
+          },
+          {
+            find: '~types',
+            replacement: path.resolve(__dirname, 'types/')
+          }
+        ],
         extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']
       },
       css: {
         preprocessorOptions: {
           scss: {
-            // // 加载全局样式，使用scss特性
-            additionalData: '@import "./styles/var.scss";'
+            //  加载全局样式，使用scss特性
+            additionalData: '@import "~styles/variables.scss";'
           }
         },
         devSourcemap: true
       },
-      plugins: [vue(), jsx()]
+      plugins: [
+        vue(),
+        jsx(),
+        createSvgIconsPlugin({
+        // 指定需要缓存的图标文件夹
+          iconDirs: [resolve('./src/icons/svg')],
+          // 指定symbolId格式
+          symbolId: 'icon-[name]'
+        })]
     }
   } else {
     // 生产环境配置
     return {
       mode,
       resolve: {
-        alias: {
-          '~/': path.resolve(__dirname, 'src'),
-          '~comp': path.resolve(__dirname, 'src/component')
-        },
+        alias: [
+          {
+            find: '~/',
+            replacement: path.resolve(__dirname, 'src/')
+          },
+          {
+            find: '~comp',
+            replacement: path.resolve(__dirname, 'src/components/')
+          },
+          {
+            find: '~hooks',
+            replacement: path.resolve(__dirname, 'src/hooks/')
+          },
+          {
+            find: '~utils',
+            replacement: path.resolve(__dirname, 'src/utils/')
+          },
+          {
+            find: '~styles',
+            replacement: path.resolve(__dirname, 'src/styles/')
+          },
+          {
+            find: '~store',
+            replacement: path.resolve(__dirname, 'src/store/')
+          },
+          {
+            find: '~api',
+            replacement: path.resolve(__dirname, 'src/api/')
+          },
+          {
+            find: '~pages',
+            replacement: path.resolve(__dirname, 'src/pages/')
+          },
+          {
+            find: '~assets',
+            replacement: path.resolve(__dirname, 'src/assets/')
+          },
+          {
+            find: '~types',
+            replacement: path.resolve(__dirname, 'types/')
+          }
+        ],
         extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']
       },
-      plugins: [vue(), jsx(), // gzip压缩 生产环境生成 .gz 文件
+      plugins: [
+        vue(),
+        jsx(), // gzip压缩 生产环境生成 .gz 文件
         mode === 'production' && viteCompression({
           verbose: true,
           disable: false,
           threshold: 10240,
           algorithm: 'gzip',
           ext: '.gz'
-        })],
+        }),
+        createSvgIconsPlugin({
+          // 指定需要缓存的图标文件夹
+          iconDirs: [resolve('./src/icons/svg')],
+          // 指定symbolId格式
+          symbolId: 'icon-[name]'
+        })
+      ],
       // 生产环境打包配置
       // 去除 console debugger
       esbuild: {
         pure: mode === 'production' ? ['console.log', 'debugger'] : []
       },
+      // 强制预构建插件包
+      optimizeDeps: {
+        include: ['axios'] // 用于鉴权
+      },
       build: {
+        target: 'modules',
+        outDir: 'dist', // 指定输出路径
+        assetsDir: 'assets', // 指定生成静态资源的存放路径
         terserOptions: {
           compress: {
             drop_console: true,

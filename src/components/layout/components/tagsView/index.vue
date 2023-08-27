@@ -41,11 +41,11 @@ import { filterAffixTags } from '~utils/router'
 import { useTagsViewStore } from '~store/tagsView'
 import { usePermissionStore } from '~store/permission'
 
-const route = useRoute()
+const route:any = useRoute()
 const router = useRouter()
 const TagsViewStore = useTagsViewStore()
 const PermissionStore = usePermissionStore()
-const visitedViews = computed(() => TagsViewStore.visitedViews)
+const visitedViews:any = computed(() => TagsViewStore.visitedViews)
 const routes = computed(() => PermissionStore.routes)
 
 const addTags = () => {
@@ -86,8 +86,8 @@ const activeTabsValue = computed({
   }
 })
 function toLastView (activeTabPath:string) {
-  const index = visitedViews.value.findIndex(item => item.path === activeTabPath)
-  const nextTab = visitedViews.value[index + 1] || visitedViews.value[index - 1]
+  const index = visitedViews.value.findIndex((item:any) => item.path === activeTabPath)
+  const nextTab:any = visitedViews.value[index + 1] || visitedViews.value[index - 1]
   if (!nextTab) return
   router.push(nextTab.path)
   TagsViewStore.addVisitedView(nextTab)
@@ -108,6 +108,7 @@ const removeTab = async (activeTabPath: string) => {
 }
 </script>
   <style lang="scss" scoped>
+  @import '~styles/variables.scss';
   .header-tags-view{
     display: flex;
     align-items: center;

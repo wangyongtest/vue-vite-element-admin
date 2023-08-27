@@ -36,13 +36,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
 // import { isExternal } from '~utils/validate'
 import AppLink from './link.vue'
+import { RouterList, IRouterItem } from '~types/router'
 
 defineProps({
   item: {
-    type: Object,
+    type: Object as any,
     required: true
   },
   basePath: {
@@ -51,15 +52,15 @@ defineProps({
   }
 })
 
-const onlyOneChild = ref(null)
-const hasOneShowingChild = (children = [], parent) => {
+const onlyOneChild:Ref<any> = ref(null)
+const hasOneShowingChild = (children:RouterList = [], parent:RouterList = []) => {
   const showingChildren = children.filter((item) => {
     // 过滤掉需要隐藏的菜单
     if (item.hidden) {
       return false
     } else {
       // 临时设置（如果只有一个显示子项，则将使用）
-      onlyOneChild.value = item
+      onlyOneChild.value = item as IRouterItem
       return true
     }
   })

@@ -19,7 +19,10 @@
             @click="handleChangeMenu(item)"
           >
             <el-icon :size="20">
-              <component :is="item?.meta?.icon" />
+              <component
+                v-if="item.meta?.icon"
+                :is="item.meta?.icon"
+              />
             </el-icon>
             <span class="title">{{ item?.meta?.title }}</span>
           </div>
@@ -63,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, Ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { usePermissionStore } from '~store/permission'
 import { userSettingStore } from '~store/settings'
@@ -95,7 +98,7 @@ const activeMenu = computed(() => {
   return path
 })
 const basePath = ref<string>('/')
-const subMenus = ref([])
+const subMenus:Ref<any[]> = ref([])
 
 watch(
   () => [route],
@@ -117,12 +120,13 @@ watch(
   }
 )
 
-const handleChangeMenu = (item) => {
+const handleChangeMenu = (item:any) => {
   router.push(item.path)
 }
 </script>
 
 <style lang="scss" scoped>
+@import '~styles/variables.scss';
   .main-columns {
     display: flex;
     flex-direction: row !important;

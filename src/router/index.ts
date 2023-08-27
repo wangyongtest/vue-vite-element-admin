@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
 // 进度条
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -14,7 +14,7 @@ const whiteList = ['/login', '/auth-redirect']
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: routeList
+  routes: routeList as RouteRecordRaw[]
 })
 
 // 记录路由
@@ -41,10 +41,10 @@ router.beforeEach(async (to, from, next) => {
         // 路由添加进去了没有及时更新 需要重新进去一次拦截
         if (!PermissionStore.routes.length) {
           // 获取权限列表进行接口访问 因为这里页面要切换权限
-          const accessRoutes = await PermissionStore.generateRoutes(UserStore.roles)
+          const accessRoutes:any = await PermissionStore.generateRoutes(UserStore.roles!)
           // hasRoles = false
           // 动态添加访问路由表
-          accessRoutes.forEach(item => router.addRoute(item))
+          accessRoutes.forEach((item:any) => router.addRoute(item))
           // 这里相当于push到一个页面 不在进入路由拦截
           next({ ...to, replace: true })
         } else {

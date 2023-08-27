@@ -1,5 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
-import { extendRoute } from '~types/router'
+import { RouterList, IRouterItem } from '~types/router'
 import path from 'path-browserify'
 
 /**
@@ -7,10 +6,10 @@ import path from 'path-browserify'
  * @param routes asyncRoutes
  * @param roles
  */
-export function filterAsyncRoutes (routes:Array<RouteRecordRaw & extendRoute>, roles:string[]) {
-  const result = []
+export function filterAsyncRoutes (routes:RouterList, roles:string[]) {
+  const result:RouterList = []
   routes.forEach(route => {
-    const tmp = { ...route }
+    const tmp:IRouterItem = { ...route }
     if (hasPermission(roles, tmp)) {
       if (tmp.children) {
         tmp.children = filterAsyncRoutes(tmp.children, roles)
@@ -26,9 +25,9 @@ export function filterAsyncRoutes (routes:Array<RouteRecordRaw & extendRoute>, r
  * @param roles
  * @param route
  */
-export function hasPermission (roles:string[], route:RouteRecordRaw & extendRoute) {
-  if (route.meta && route.meta.roles) {
-    return roles.some(role => route.meta.roles.includes(role))
+export function hasPermission (roles:string[], route:IRouterItem) {
+  if (route.meta && route.meta.role) {
+    return roles.some(role => (route.meta && route.meta.role)!.includes(role))
   } else {
     return false
   }
@@ -41,9 +40,9 @@ export function hasPermission (roles:string[], route:RouteRecordRaw & extendRout
  * @return void
  * */
 
-export function filterKeepAlive (routers:Array<RouteRecordRaw & extendRoute>) {
-  const cacheRouter: Array<RouteRecordRaw & extendRoute> = []
-  const deep = (routers:Array<RouteRecordRaw & extendRoute>) => {
+export function filterKeepAlive (routers:RouterList) {
+  const cacheRouter: Array<string> = []
+  const deep = (routers:Array<IRouterItem>) => {
     routers.forEach(item => {
       if (item.meta?.keepAlive && item.name) {
         cacheRouter.push(item.name)
@@ -57,9 +56,9 @@ export function filterKeepAlive (routers:Array<RouteRecordRaw & extendRoute>) {
   return cacheRouter
 }
 
-export function filterAffixTags (routes, basePath = '/') {
+export function filterAffixTags (routes:any, basePath = '/') {
   let tags:any = []
-  routes.forEach((route) => {
+  routes.forEach((route:any) => {
     if (route.meta && route.meta.affix) {
       const tagPath = path.resolve(basePath, route.path)
       tags.push({
@@ -79,15 +78,20 @@ export function filterAffixTags (routes, basePath = '/') {
   return tags
 }
 
+type IData = {
+  path: string
+  title: string[]
+}
+
 // 筛选出可以在侧栏中显示的路线 生成标题
-export const generateRoutes = (routes, basePath = '/', prefixTitle = []):any => {
-  let res = []
+export const generateRoutes = (routes:any, basePath = '/', prefixTitle = []):RouterList => {
+  let res:RouterList = []
   for (const router of routes) {
     // 忽略隐藏的路由
     if (router.hidden) {
       continue
     }
-    const data = {
+    const data:IData = {
       path: path.resolve(basePath, router.path),
       title: [...prefixTitle]
     }
@@ -102,7 +106,7 @@ export const generateRoutes = (routes, basePath = '/', prefixTitle = []):any => 
     }
     // 递归子路由
     if (router.children) {
-      const tempRoutes = generateRoutes(router.children, data.path, data.title)
+      const tempRoutes = generateRoutes(router.children, data.path, data.title = [])
       if (tempRoutes.length >= 1) {
         res = [...res, ...tempRoutes]
       }

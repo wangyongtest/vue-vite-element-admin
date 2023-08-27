@@ -32,13 +32,13 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter, RouteRecordRaw } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
 
 // router-item
-const handleLink = (item) => {
+const handleLink = (item:RouteRecordRaw) => {
   router.push({
     path: item.path
   })

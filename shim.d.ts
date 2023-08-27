@@ -21,6 +21,8 @@ declare module 'vue-router' {
         requiresAuth?: boolean
         roles?: string[]
     }
-}
+};
+
+declare module 'vue-qr/src/packages/vue-qr.vue'{}
 
 export default {}

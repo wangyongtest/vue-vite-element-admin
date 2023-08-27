@@ -3,10 +3,10 @@
     <h2 class="title">
       Vue3-TS-vite
     </h2>
-    <vue-qr text="https://github.com/zouzhibin/vue-admin-perfect" />
+    <QRCodeVue3 text="https://github.com/zouzhibin/vue-admin-perfect" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import vueQr from 'vue-qr/src/packages/vue-qr.vue'
+import QRCodeVue3 from 'qrcode-vue3'
 </script>

@@ -1,10 +1,11 @@
 // 自定义name的壳的集合
-import { h } from 'vue'
+import { Component, h } from 'vue'
 
 const wrapperMap = new Map()
 
-export const useWrapComponents = (Component, route) => {
-  let wrapper
+export const useWrapComponents = (Component:any, route:any):any => {
+  let wrapper: Component
+
   if (Component) {
     const wrapperName = route.name
     if (wrapperMap.has(wrapperName)) {
