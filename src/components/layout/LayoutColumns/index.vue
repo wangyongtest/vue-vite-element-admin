@@ -126,7 +126,6 @@ const handleChangeMenu = (item:any) => {
 </script>
 
 <style lang="scss" scoped>
-@import '~styles/variables';
 
   .main-columns {
     display: flex;

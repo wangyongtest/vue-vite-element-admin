@@ -228,6 +228,15 @@ export default defineConfig(({ mode }:ConfigEnv):UserConfig => {
         ],
         extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']
       },
+      css: {
+        preprocessorOptions: {
+          scss: {
+            //  加载全局样式，使用scss特性
+            additionalData: '@import "~styles/variables.scss";'
+          }
+        },
+        devSourcemap: true
+      },
       plugins: [
         vue(),
         jsx(), // gzip压缩 生产环境生成 .gz 文件

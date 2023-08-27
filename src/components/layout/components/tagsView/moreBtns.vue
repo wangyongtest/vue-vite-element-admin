@@ -68,8 +68,6 @@ const closeAllTab = async () => {
 }
 </script>
   <style lang="scss" scoped>
-  @import '~styles/variables';
-
   .more{
     color: white;
     background-color: $primaryColor;

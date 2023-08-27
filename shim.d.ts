@@ -23,6 +23,4 @@ declare module 'vue-router' {
     }
 };
 
-declare module 'vue-qr/src/packages/vue-qr.vue'{}
-
 export default {}
